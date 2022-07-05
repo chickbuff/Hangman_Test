@@ -64,26 +64,28 @@ class Hangman:
             The letter to be checked
 
        '''
-        if letter.lower() in self.word :
-            print(f" That's amazing! letter '{letter}' is in the mystery word!")
-            for i in range(len(self.word)):
-                if self.word[i] == letter:
-                    self.word_guessed[i] = letter
-            self.num_letters -= 1    
-            print(f"{self.word_guessed}")
-            print(f" No. of lives left =  {self.num_lives}")
-            if self.num_letters == 0:
-                print(f"You won!!!!!,you guessed the word '{self.word}' correctly!")
-                return
-        else:
-            self.num_lives -= 1
-            print(f"I'm sorry! letter '{letter}' is not in the mystery word, please try again!")
-            print(f" No. of lives left =  {self.num_lives}")
-            print(f"{self.word_guessed}")
-            if self.num_lives == 0:
-                print(f"Sorry, you ran out of lives. The word was '{self.word}'!")
-                return
-        self.list_letters = self.list_letters + [letter]
+        while True:
+            if letter.lower() in self.word :
+                print(f" That's amazing! letter '{letter}' is in the mystery word!")
+                for i in range(len(self.word)):
+                    if self.word[i] == letter:
+                        self.word_guessed[i] = letter
+                self.num_letters -= 1    
+                print(f"{self.word_guessed}")
+                print(f" No. of lives left =  {self.num_lives}")
+                if self.num_letters == 0:
+                    print(f"You won!!!!!,you guessed the word '{self.word}' correctly!")
+                    return
+            else:
+                self.num_lives -= 1
+                print(f"I'm sorry! letter '{letter}' is not in the mystery word, please try again!")
+                print(f" No. of lives left =  {self.num_lives}")
+                print(f"{self.word_guessed}")
+                if self.num_lives == 0:
+                    print(f"Sorry, you ran out of lives. The word was '{self.word}'!")
+                    return
+            self.list_letters = self.list_letters + [letter]
+            break
     
 # TODO 3: Check if the letter is in the word. TIP: You can use the lower() method to convert the letter to lowercase
 # TODO 3: If the letter is in the word, replace the '_' in the word_guessed list with the letter
@@ -127,13 +129,15 @@ def play_game(word_list):
     # elif game.num_lives == 0:
     #     print(f"Sorry, you ran out of lives. The word was '{game.word}'!")
     # else:
-    if game.num_lives > 0:
-        if game.num_letters > 0:
-            game.ask_letter()
-        elif game.num_letters == 0:
-            print(f"You won!!!!!,you guessed the word '{game.word}' correctly!")
-    else:
-            print(f"Sorry, you ran out of lives. The word was '{game.word}'!")
+    while True:
+        if game.num_lives > 0:
+            if game.num_letters > 0:
+                game.ask_letter()
+            elif game.num_letters == 0:
+                print(f"You won!!!!!,you guessed the word '{game.word}' correctly!")
+        else:
+                print(f"Sorry, you ran out of lives. The word was '{game.word}'!")
+                break
 
 # TODO 1: To test this task, you can call the ask_letter method
 # TODO 2: To test this task, upon initialization, two messages should be printed 
